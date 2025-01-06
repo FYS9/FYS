@@ -17,8 +17,7 @@
             background: linear-gradient(135deg, #ffffff, #d4d4d4);
             font-family: 'Open Sans', sans-serif;
         }
-
-        #webcrumbs .container {
+        .container {
             width: 1400px;
             min-height: 800px;
             position: relative;
@@ -30,8 +29,7 @@
             border-radius: 24px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-
-        #webcrumbs .background {
+        .background {
             position: absolute;
             inset: 0;
             background-image: url('https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&q=80&w=2070');
@@ -40,8 +38,7 @@
             filter: brightness(50%);
             border-radius: 24px;
         }
-
-        #webcrumbs .content {
+        .content {
             position: relative;
             z-index: 10;
             display: flex;
@@ -50,28 +47,24 @@
             width: 100%;
             padding: 0 24px;
         }
-
-        #webcrumbs .title {
+        .title {
             font-size: 87px;
             font-weight: bold;
             color: white;
             margin: 0;
             font-family: 'Lato', sans-serif;
         }
-
-        #webcrumbs .subtitle {
+        .subtitle {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.9);
             margin-top: 4px;
         }
-
-        #webcrumbs .search-container {
+        .search-container {
             width: 100%;
             max-width: 450px;
             margin-top: 24px;
         }
-
-        #webcrumbs .search-wrapper {
+        .search-wrapper {
             position: relative;
             display: flex;
             align-items: center;
@@ -79,8 +72,7 @@
             border-radius: 18px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-
-        #webcrumbs .search-input {
+        .search-input {
             width: 100%;
             height: 40px;
             padding: 0 16px;
@@ -89,15 +81,13 @@
             font-size: 16px;
             outline: none;
         }
-
-        #webcrumbs .search-icons {
+        .search-icons {
             position: absolute;
             right: 12px;
             display: flex;
             gap: 8px;
         }
-
-        #webcrumbs .icon {
+        .icon {
             font-size: 20px;
             color: #4b5563;
             cursor: pointer;
@@ -105,39 +95,34 @@
     </style>
 </head>
 <body>
-    <div id="webcrumbs">
-        <div class="container">
-            <div class="background"></div>
-            <div class="content">
-                <h1 class="title">FYS</h1>
-                <p class="subtitle">FIND YOUR SNEAKERS</p>
-                <div class="search-container">
+    <div class="container">
+        <div class="background"></div>
+        <div class="content">
+            <h1 class="title">FYS</h1>
+            <p class="subtitle">FIND YOUR SNEAKERS</p>
+            <div class="search-container">
+                <form onsubmit="submitQuery(); return false;">
                     <div class="search-wrapper">
-                        <input 
-                            type="text" 
-                            class="search-input" 
-                            placeholder="Search your favourite Sneakers"
-                            maxlength="50"
-                            aria-label="Search for sneakers"
-                        >
+                        <input type="text" 
+                               class="search-input" 
+                               placeholder="Search your favourite Sneakers"
+                               maxlength="50"
+                               aria-label="Search for sneakers">
                         <div class="search-icons">
-                            <span class="material-symbols-outlined icon">qr_code_scanner</span>
-                            <span class="material-symbols-outlined icon">search</span>
+                            <span class="material-symbols-outlined icon" onclick="submitQuery()">qr_code_scanner</span>
+                            <span class="material-symbols-outlined icon" onclick="submitQuery()">search</span>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 
     <script>
-        document.querySelector('.search-input').addEventListener('focus', function() {
-            this.parentElement.style.transform = 'scale(1.02)';
-        });
-
-        document.querySelector('.search-input').addEventListener('blur', function() {
-            this.parentElement.style.transform = 'scale(1)';
-        });
+        function submitQuery() {
+            const searchQuery = document.querySelector('.search-input').value;
+            window.location.href = `second.html?query=${encodeURIComponent(searchQuery)}`;
+        }
     </script>
 </body>
 </html>
